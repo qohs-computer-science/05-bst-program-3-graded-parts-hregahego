@@ -28,23 +28,23 @@ public class BST implements BSTInterface
 	
 
 	public void add(Comparable newVal) {
-        TreeNode addTo = root;
-        if (addTo == null) root = new TreeNode(newVal);
-        while (addTo != null) {
-            if (newVal.compareTo(addTo.getValue()) <= 0) {
-                if (addTo.getLeft() == null) {
-                    addTo.setLeft(new TreeNode(newVal));
-                    return;
-                } else {
-                    addTo = addTo.getLeft();
-                }
+        if (root == null) root = new TreeNode(newVal);
+        else addHelper(root, newVal);
+    }
+
+    private void addHelper(TreeNode sub, Comparable val) {
+        if (val.compareTo(sub.getValue()) <= 0) {
+            if (sub.getLeft() == null) {
+                sub.setLeft(new TreeNode(val));
+                return;
             } else {
-                if (addTo.getRight() == null) {
-                    addTo.setRight(new TreeNode(newVal));
-                    return;
-                } else {
-                    addTo = addTo.getRight();
-                }
+                addHelper(sub.getLeft(), val);
+            }
+        } else {
+            if (sub.getRight() == null) {
+                sub.setRight(new TreeNode(val));
+            } else {
+                addHelper(sub.getRight(), val);
             }
         }
     }
@@ -132,29 +132,31 @@ public class BST implements BSTInterface
 	public void printInOrder() {
         inorder(root);
     }
+
     private void inorder(TreeNode sub) {
+
         if (sub.getLeft() != null) {
             inorder(sub.getLeft());
         }
+
         System.out.println(sub.getValue());
+
         if (sub.getRight() != null) {
             inorder(sub.getRight());
         }
     }
-    // private void printStk(Stack<TreeNode> stk) {
-    //     while (!stk.empty()) System.out.println(stk.pop());
-    // }
+    
 	public void printPreOrder() {
-        Stack<TreeNode> stk = new Stack<TreeNode>();
-        stk.push(root);
-        TreeNode cur;
-        while (!stk.empty()) {
-            cur = stk.pop();
-            if (cur != null) {
-                System.out.println(cur.getValue());
-                stk.push(cur.getRight());
-                stk.push(cur.getLeft());
-            }
+        preorder(root);
+    }
+
+    private void preorder(TreeNode sub) {
+        System.out.println(sub.getValue());
+        if (sub.getLeft() != null) {
+            preorder(sub.getLeft());
+        }
+        if (sub.getRight() != null) {
+            preorder(sub.getRight());
         }
     }
 
