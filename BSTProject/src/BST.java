@@ -10,6 +10,7 @@ public class BST implements BSTInterface
     
     public BST() {
         root = null;
+        size = 0;
     }
 
     public TreeNode getRoot() { 
@@ -30,6 +31,7 @@ public class BST implements BSTInterface
 	public void add(Comparable newVal) {
         if (root == null) root = new TreeNode(newVal);
         else addHelper(root, newVal);
+        size++;
     }
 
     private void addHelper(TreeNode sub, Comparable val) {
@@ -125,12 +127,14 @@ public class BST implements BSTInterface
                 target.setLeft(LC.getLeft());
                 target.setRight(LC.getRight());
         }
+        size--;
         return true;
 
     }
 
 	public void printInOrder() {
-        inorder(root);
+        if (root != null) inorder(root);
+        
     }
 
     private void inorder(TreeNode sub) {
@@ -147,7 +151,7 @@ public class BST implements BSTInterface
     }
     
 	public void printPreOrder() {
-        preorder(root);
+        if (root != null) preorder(root);
     }
 
     private void preorder(TreeNode sub) {
@@ -161,7 +165,7 @@ public class BST implements BSTInterface
     }
 
 	public void printPostOrder() {
-        postorder(root);
+        if (root != null) postorder(root);
     }
     private void postorder(TreeNode sub) {
         if (sub.getLeft() != null) {
