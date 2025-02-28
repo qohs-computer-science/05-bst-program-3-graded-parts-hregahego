@@ -70,6 +70,9 @@ public class BST implements BSTInterface
     }
 
 	public boolean replace(Comparable old, Comparable toAdd) {
+        if (!find(old)) return false;
+        delete(old);
+        add(toAdd);
         return true;
     }
 

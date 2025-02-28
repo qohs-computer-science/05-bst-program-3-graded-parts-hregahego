@@ -10,24 +10,28 @@ import java.lang.Comparable;
 public class BSTTester {
     public static void main(String[] args) {
         BST test = new BST();
-        String add = "BCAGDEIHY";
+        String add = "ALGBEIQPS";
         for (char c : add.toCharArray()) {
             test.add(c);
         }
-//          B
-//         / \
-//        A   C
+//              A          
+//               \
+//                L
+//               /  \
+//              G    Q
+//             / \   /\
+//            B   I P  S    
 //             \
-//              G
-//             /  \
-//            D     I
-//             \   /  \
-//              E H    Y
+//              E
+//
+//
+//
+//
 //
         // TreeNode result = (TreeNode) test.findHelper('G', null, test.getRoot()).get(1);
         // System.out.println(result.getValue());
         // test.delete('');
-        test.delete('G');
+        test.delete('L');
         test.printPreOrder();
     }
 }
